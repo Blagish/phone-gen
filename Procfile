@@ -1,1 +1,1 @@
-web: python.exe -m flask run
+web: python -m flask run

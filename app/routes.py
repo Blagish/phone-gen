@@ -1,4 +1,4 @@
-from app import app, providers, regions, city_by_region, data_by_region
+from app import app, providers, regions, city_by_region, data_by_region, logger
 from flask import render_template, request, redirect, url_for
 from app.forms import BaseForm
 from app.randomize import randomize
@@ -33,6 +33,9 @@ def get_things():
 
     provider = providers_sorted[int(request.args.get('provider_id'))]
     count = int(request.args.get('count'))
+    logger.info(f'Called API method /get_things with parameters ' +\
+                f'region_id={request.args.get("region_id")}, ' +\
+                f'provider_id={request.args.get("provider_id")}, count={count}')
     data_sorted = list(filter(lambda x: data_by_region[x][4] == provider and data_by_region[x][5] in all_locations,
                               range(len(data_by_region))))
 
@@ -62,16 +65,15 @@ def show_providers():
 @app.route('/get_info')
 def get_info():
     phone = request.args.get('phone')
+    logger.info(f'Called API method /get_info with parameter phone={phone}')
     if len(phone) == 11:
         phone = phone[1:]
     if not int(phone) or len(phone) != 10:
         return '{"code": "nan"}'  # not a number
     code = phone[:3]
     phone = phone[3:]
-    print(code, phone)
     regions_by_code = list(filter(lambda x: data_by_region[x][0] == code, range(len(data_by_region))))
     regions_by_code.sort(key=lambda x: data_by_region[x][1])
-    print(regions_by_code)
     for i in regions_by_code:
         if data_by_region[i][1] < phone < data_by_region[i][2]:
             location = data_by_region[i][5].split('|')

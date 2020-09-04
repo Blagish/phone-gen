@@ -1,27 +1,19 @@
 import requests
 import os
 import csv
-from app import providers, regions, city_by_region, data_by_region
+from app import providers, regions, city_by_region, data_by_region, logger
 
 file_names = ('ABC-3xx.csv',
               'ABC-4xx.csv',
               'ABC-8xx.csv',
               'DEF-9xx.csv')
 
+
 def get_file(name, session):
     file_data = session.get(f'https://rossvyaz.ru/data/{name}')
     with open(name, 'w') as file:
         file.write(file_data.text)
-
-
-def find_last(s, i):
-    rev = reversed(s)
-
-
-#def clear_table():
-#    num = PhoneRange.query.delete()
-#    print(f'deleted {num} rows')
-#    db.session.commit()
+    logger.info(f'File {name} downloaded successfully.')
 
 
 def parse_location(s):
@@ -40,7 +32,6 @@ def small_format(s):
 
 
 def write_to_db(name):
-    k = 0
     with open(name, encoding='utf-8') as file:
         dr = csv.DictReader(file, delimiter=';')
         for i in dr:
@@ -50,41 +41,24 @@ def write_to_db(name):
             region = parse_location(data_region)
 
             data_by_region.append((i['АВС/ DEF'],
-                                    i['От'],
-                                    i['До'],
-                                    i['Емкость'],
-                                    data_provider,
-                                    data_region))
+                                   i['От'],
+                                   i['До'],
+                                   i['Емкость'],
+                                   data_provider,
+                                   data_region))
 
             providers.update([data_provider])
 
             regions.update([region])
-            k += 1
-    return k
+    logger.info(f'File {name} parsed successfully.')
 
 
-def update_database():
-    os.chdir('.')
-    m = []
-    print(os.listdir())
-    print(os.curdir)
+def load_database(update=True):
+    logger.info('Started updating .csv files.')
     os.chdir('./app/data')
-    print(os.getcwd())
     with requests.Session() as session:
         for name in file_names:
-#           get_file(name, session)
-            k = write_to_db(name)
-            m.append(k)
-            print('file done')
-
-    with open('providers.json', 'w') as pros:
-        pros.write(str(sorted(providers)))
-    with open('city_by_region.json', 'w') as regs:
-        regs.write(str(city_by_region))
-    with open('data_by_region.json', 'w') as regs:
-        regs.write(str(data_by_region))
-    with open('regions.json', 'w') as regs:
-        regs.write(str(sorted(regions)))
-    os.chdir('.')
-    return m
-
+            if update:
+                get_file(name, session)
+            write_to_db(name)
+    logger.info('Files updated successfully.')

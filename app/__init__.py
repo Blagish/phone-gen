@@ -1,17 +1,24 @@
 from flask import Flask
 from app.config import Config
+import logging
 
 
 providers = set()
 regions = set()
 city_by_region = dict()
 data_by_region = list()
+logger = logging.getLogger('PhoneGen')
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler("phonegen.log")
+fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger.addHandler(fh)
 
-from app.get_csv import update_database #İÒÎ ÓÆÀÑÍÎ ÍÅÊĞÀÑÈÂÎ ÍÎ ÒÀÊ ÍÀÄÎ
+
+from app.get_csv import load_database  # İÒÎ ÓÆÀÑÍÎ ÍÅÊĞÀÑÈÂÎ ÍÎ ÒÀÊ ÍÀÄÎ
 
 app = Flask(__name__)
 app.config.from_object(Config)
+logger.info('Starting the app...')
+load_database(update=False)
 
-update_database()
-
-from app import routes#, models
+from app import routes
