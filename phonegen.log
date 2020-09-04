@@ -145,3 +145,32 @@
 2020-09-04 18:17:17,472 - PhoneGen - INFO - Called API method /get_info with parameter phone=3012115678
 2020-09-04 18:17:17,661 - PhoneGen - INFO - Calculated
 2020-09-04 18:17:21,243 - PhoneGen - INFO - Called API method /get_info with parameter phone=301211567s
+2020-09-04 18:23:18,488 - PhoneGen - INFO - Starting the app...
+2020-09-04 18:23:18,489 - PhoneGen - INFO - Started updating .csv files.
+2020-09-04 18:23:19,441 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-04 18:23:22,852 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-04 18:23:24,039 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-04 18:23:24,151 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-04 18:23:24,151 - PhoneGen - INFO - Files updated successfully.
+2020-09-04 18:25:01,068 - PhoneGen - INFO - Called API method /get_things with parameters region_id=7, provider_id=0, count=1
+2020-09-04 18:29:04,545 - PhoneGen - INFO - Starting the app...
+2020-09-04 18:29:04,547 - PhoneGen - INFO - Started updating .csv files.
+2020-09-04 18:29:05,565 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-04 18:29:09,109 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-04 18:29:10,895 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-04 18:29:11,307 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-04 18:29:11,308 - PhoneGen - INFO - Files updated successfully.
+2020-09-04 18:29:44,789 - PhoneGen - INFO - Starting the app...
+2020-09-04 18:29:44,789 - PhoneGen - INFO - Started updating .csv files.
+2020-09-04 18:29:45,690 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-04 18:29:49,203 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-04 18:29:50,276 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-04 18:29:50,386 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-04 18:29:50,387 - PhoneGen - INFO - Files updated successfully.
+2020-09-04 18:30:56,835 - PhoneGen - INFO - Starting the app...
+2020-09-04 18:30:56,836 - PhoneGen - INFO - Started updating .csv files.
+2020-09-04 18:30:57,696 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-04 18:31:01,775 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-04 18:31:03,285 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-04 18:31:03,476 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-04 18:31:03,476 - PhoneGen - INFO - Files updated successfully.

@@ -23,7 +23,11 @@ def home():
 
 @app.route('/get_things')  # , methods=['GET, POST'])
 def get_things():
-    region = regions_sorted[int(request.args.get('region_id'))]
+    pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get('provider_id'), request.args.get('count')
+    if not (pre_region.isdigit() and pre_provider.isdigit() and pre_count.isdigit()):
+        flash('Недопустимые значения параметров.')
+        return redirect(url_for('home'))
+    region = regions_sorted[int(pre_region)]
     cities = city_by_region[region]
     all_locations = []
     for i in cities:
@@ -32,12 +36,12 @@ def get_things():
             sep = ''
         all_locations.append(f'{sep}{region}')
 
-    provider_id = int(request.args.get('provider_id'))
+    provider_id = int(pre_provider)
     provider = providers_sorted[provider_id]
-    count = int(request.args.get('count'))
+    count = int(pre_count)
     logger.info(f'Called API method /get_things with parameters ' + \
-                f'region_id={request.args.get("region_id")}, ' + \
-                f'provider_id={request.args.get("provider_id")}, count={count}')
+                f'region_id={pre_region}, ' + \
+                f'provider_id={pre_provider}, count={count}')
     data_sorted = list(filter(lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
                               range(len(data_by_region))))
 
