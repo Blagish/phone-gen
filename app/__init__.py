@@ -14,7 +14,7 @@ fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(me
 logger.addHandler(fh)
 
 
-from app.get_csv import load_database  # İÒÎ ÓÆÀÑÍÎ ÍÅÊĞÀÑÈÂÎ ÍÎ ÒÀÊ ÍÀÄÎ
+from app.get_csv import load_database  # this looks terrible but is sufficient
 
 app = Flask(__name__)
 app.config.from_object(Config)

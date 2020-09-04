@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from app.forms import BaseForm
 from app.various import randomize, interval_bin_search
 
-providers_sorted = list(sorted(providers))
+providers_sorted = ['Любой'] + list(sorted(providers))
 regions_sorted = list(sorted(regions))
 
 
@@ -31,12 +31,13 @@ def get_things():
             sep = ''
         all_locations.append(f'{sep}{region}')
 
-    provider = providers_sorted[int(request.args.get('provider_id'))]
+    provider_id = int(request.args.get('provider_id'))
+    provider = providers_sorted[provider_id]
     count = int(request.args.get('count'))
     logger.info(f'Called API method /get_things with parameters ' + \
                 f'region_id={request.args.get("region_id")}, ' + \
                 f'provider_id={request.args.get("provider_id")}, count={count}')
-    data_sorted = list(filter(lambda x: data_by_region[x][4] == provider and data_by_region[x][5] in all_locations,
+    data_sorted = list(filter(lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
                               range(len(data_by_region))))
 
     phones = randomize(count, [(data_by_region[i][0],  # code
