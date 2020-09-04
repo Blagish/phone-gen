@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SubmitField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, NumberRange
 
 
 class BaseForm (FlaskForm):
     region = SelectField('Выберите регион:', coerce=int)
     provider = SelectField('Выберите провайдера связи', coerce=int)
-    count = IntegerField('Укажите число запрашиваемых номеров', validators=[DataRequired()])
+    count = IntegerField('Укажите число запрашиваемых номеров', validators=[DataRequired(), NumberRange(1, 1000000)])
     submit = SubmitField('Запросить')

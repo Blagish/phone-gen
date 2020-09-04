@@ -27,6 +27,10 @@ def get_things():
     if not (pre_region.isdigit() and pre_provider.isdigit() and pre_count.isdigit()):
         flash('Недопустимые значения параметров.')
         return redirect(url_for('home'))
+    count = int(pre_count)
+    if count > 1000000:
+        flash('Число номеров не должно превышать 1000000 (одного миллиона).')
+        return redirect(url_for('home'))
     region = regions_sorted[int(pre_region)]
     cities = city_by_region[region]
     all_locations = []
@@ -38,7 +42,7 @@ def get_things():
 
     provider_id = int(pre_provider)
     provider = providers_sorted[provider_id]
-    count = int(pre_count)
+
     logger.info(f'Called API method /get_things with parameters ' + \
                 f'region_id={pre_region}, ' + \
                 f'provider_id={pre_provider}, count={count}')
