@@ -1,5 +1,5 @@
 from app import app, providers, regions, city_by_region, data_by_region, logger
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from app.forms import BaseForm
 from app.various import randomize, interval_bin_search
 
@@ -8,6 +8,7 @@ regions_sorted = list(sorted(regions))
 
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     form = BaseForm()
     form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
@@ -45,7 +46,8 @@ def get_things():
                                 int(data_by_region[i][2])) for i in data_sorted])  # end
     if phones:
         return '<br/>'.join(list(phones))
-    return 'No phones can be generated with these parameters.'
+    flash('У выбранного провайдера нет номеров в данном регионе.')
+    return redirect(url_for('home'))
 
 
 @app.route('/api')
