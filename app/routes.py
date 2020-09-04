@@ -71,7 +71,7 @@ def get_info():
     logger.info(f'Called API method /get_info with parameter phone={phone}')
     if len(phone) == 11:
         phone = phone[1:]
-    if not int(phone) or len(phone) != 10:
+    if not phone.isdigit() or len(phone) != 10:
         return '{"code": "nan"}'  # not a number
     code = phone[:3]
     phone = phone[3:]

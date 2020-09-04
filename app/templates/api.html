@@ -19,7 +19,7 @@
         <div class="content-section"> https://site.name/<b>get_info</b>?<b>phone=3012115678</b> </div>
         <a>Пример ответа: </a>
         <div class="content-section"> {"code": "ok","provider": "ПАО "Ростелеком"","region": "Республика Бурятия","location": "г. Улан-Удэ"} </div>
-        <a>Если на вход была получена строка, не содержащяя номера, выдаст ошибку "nan" - Not A Number.</a>
+        <a>Если на вход была получена строка, не содержащая номера, выдаст ошибку "nan" - Not A Number.</a>
         <div class="content-section"> {"code": "nan"} </div>
         <a>Если такого номера нет в базе данных, код ошибки "ne" - Not Exist</a>
         <div class="content-section"> {"code": "ne"} </div>
@@ -46,7 +46,6 @@
             3012201637<br>
             3012200832 </div>
         <a>Если с заданными параметрами невозможно сгенерировать номера телефонов, выдаст ошибку.</a>
-        <div class="content-section"> No phones can be generated with these parameters. </div>
     </div>
 
 {% endblock content %}
