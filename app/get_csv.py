@@ -17,7 +17,7 @@ def get_file(name, session):
         logger.error(f'Unable to download {name}. Using the previous version instead.')
         return 0
     copy(name, f'backup/{name}')
-    logger.info(f'File {name} backuped.')
+    logger.info(f'File {name} backed up.')
     with open(name, 'w') as file:
         file.write(file_data.text)
     logger.info(f'File {name} downloaded successfully.')

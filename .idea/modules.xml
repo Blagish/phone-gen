@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../phone-gen/.idea/PhoneGen.iml" filepath="$PROJECT_DIR$/../phone-gen/.idea/PhoneGen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PhoneGen.iml" filepath="$PROJECT_DIR$/.idea/PhoneGen.iml" />
     </modules>
   </component>
 </project>

@@ -1,7 +1,7 @@
 from app import app, providers, regions, city_by_region, data_by_region, logger
 from flask import render_template, request, redirect, url_for
 from app.forms import BaseForm
-from app.randomize import randomize
+from app.various import randomize, interval_bin_search
 
 providers_sorted = list(sorted(providers))
 regions_sorted = list(sorted(regions))
@@ -33,8 +33,8 @@ def get_things():
 
     provider = providers_sorted[int(request.args.get('provider_id'))]
     count = int(request.args.get('count'))
-    logger.info(f'Called API method /get_things with parameters ' +\
-                f'region_id={request.args.get("region_id")}, ' +\
+    logger.info(f'Called API method /get_things with parameters ' + \
+                f'region_id={request.args.get("region_id")}, ' + \
                 f'provider_id={request.args.get("provider_id")}, count={count}')
     data_sorted = list(filter(lambda x: data_by_region[x][4] == provider and data_by_region[x][5] in all_locations,
                               range(len(data_by_region))))
@@ -73,12 +73,23 @@ def get_info():
     code = phone[:3]
     phone = phone[3:]
     regions_by_code = list(filter(lambda x: data_by_region[x][0] == code, range(len(data_by_region))))
-    regions_by_code.sort(key=lambda x: data_by_region[x][1])
-    for i in regions_by_code:
-        if data_by_region[i][1] < phone < data_by_region[i][2]:
-            location = data_by_region[i][5].split('|')
-            return '{"code": "ok",' \
-                   f'"provider": "{data_by_region[i][4]}",' \
-                   f'"region": "{location.pop(-1)}",' \
-                   f'"location": "{"|".join(location)}"' + '}'
+    res = interval_bin_search(phone, data_by_region, regions_by_code)
+    if res != -1:
+        location = data_by_region[res][5].split('|')
+        logger.info(f'Calculated')
+        return '{"code": "ok",' \
+               f'"provider": "{data_by_region[res][4]}",' \
+               f'"region": "{location.pop(-1)}",' \
+               f'"location": "{"|".join(location)}"' + '}'
     return '{"code": "ne"}'  # not exist
+
+
+# Old version, with simple search
+#    for i in regions_by_code:
+#        if data_by_region[i][1] < phone < data_by_region[i][2]:
+#           location = data_by_region[i][5].split('|')
+#           logger.info(f'Calculated')
+#           return '{"code": "ok",' \
+#                  f'"provider": "{data_by_region[i][4]}",' \
+#                  f'"region": "{location.pop(-1)}",' \
+#                 f'"location": "{"|".join(location)}"' + '}'
