@@ -2,6 +2,8 @@ import requests
 import os
 import csv
 from app import providers, regions, city_by_region, data_by_region, logger
+from shutil import copy
+
 
 file_names = ('ABC-3xx.csv',
               'ABC-4xx.csv',
@@ -11,6 +13,11 @@ file_names = ('ABC-3xx.csv',
 
 def get_file(name, session):
     file_data = session.get(f'https://rossvyaz.ru/data/{name}')
+    if not file_data.ok:
+        logger.error(f'Unable to download {name}. Using the previous version instead.')
+        return 0
+    copy(name, f'backup/{name}')
+    logger.info(f'File {name} backuped.')
     with open(name, 'w') as file:
         file.write(file_data.text)
     logger.info(f'File {name} downloaded successfully.')
@@ -32,7 +39,7 @@ def small_format(s):
 
 
 def write_to_db(name):
-    with open(name, encoding='utf-8') as file:
+    with open(name) as file:
         dr = csv.DictReader(file, delimiter=';')
         for i in dr:
             data_provider = small_format(i['Оператор'])
