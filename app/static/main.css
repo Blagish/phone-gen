@@ -111,3 +111,16 @@ a.article-title:hover {
   clear: both;
 
 }
+
+.block-scroll{
+  height: 200px;
+  overflow-y: scroll;
+  float: left;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

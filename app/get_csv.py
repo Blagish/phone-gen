@@ -1,7 +1,7 @@
 import requests
 import os
 import csv
-from app import providers, regions, city_by_region, data_by_region, logger
+from app import providers, regions, city_by_region, data_by_region, providers_by_region, logger
 from shutil import copy
 
 
@@ -46,6 +46,10 @@ def write_to_db(name):
             data_region = small_format(i['Регион'])
 
             region = parse_location(data_region)
+            if providers_by_region.get(region, -1) != -1:
+                providers_by_region[region].update([data_provider])
+            else:
+                providers_by_region[region] = set(['Любой'])
 
             data_by_region.append((i['АВС/ DEF'],
                                    i['От'],

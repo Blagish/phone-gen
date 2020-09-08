@@ -1,4 +1,4 @@
-from app import app, providers, regions, city_by_region, data_by_region, logger
+from app import app, providers, regions, city_by_region, data_by_region, logger, providers_by_region
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import BaseForm
 from app.various import randomize, interval_bin_search
@@ -12,18 +12,35 @@ regions_sorted = list(sorted(regions))
 def home():
     form = BaseForm()
     form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
-    form.provider.choices = [(k, providers_sorted[k]) for k in range(len(providers_sorted))]
-    if form.validate_on_submit():
-        return redirect(url_for('get_things',
-                                region_id=form.region.data,
-                                provider_id=form.provider.data,
-                                count=form.count.data))
+    form.provider.choices = [(0, '-Сначала выберите регион-')]
+    if form.is_submitted():
+        if form.set_region.data:    # If we setted the region, need to create providers list
+            choices = []
+            possible_providers = providers_by_region[regions_sorted[form.region.data]]
+            for i in range(len(providers_sorted)): # rewrite this in the future maybe? dk
+                if providers_sorted[i] in possible_providers:
+                    choices.append((i, providers_sorted[i]))
+
+            form.provider.choices = choices
+            form.region_chosen.data = True
+            return render_template('home.html', title='Заглавная страница', form=form)
+
+        else:
+            return redirect(url_for('get_things',
+                                    region_id=form.region.data,
+                                    provider_id=form.provider.data,
+                                    count=form.count.data))
     return render_template('home.html', title='Заглавная страница', form=form)
 
 
 @app.route('/get_things')  # , methods=['GET, POST'])
 def get_things():
     pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get('provider_id'), request.args.get('count')
+
+    if not (pre_region and pre_provider and pre_count): # Check for NoneType
+        flash('Недопустимые значения параметров.')
+        return redirect(url_for('home'))
+
     if not (pre_region.isdigit() and pre_provider.isdigit() and pre_count.isdigit()):
         flash('Недопустимые значения параметров.')
         return redirect(url_for('home'))
@@ -31,6 +48,8 @@ def get_things():
     if count > 1000000:
         flash('Число номеров не должно превышать 1000000 (одного миллиона).')
         return redirect(url_for('home'))
+
+    # Create all locations to chosen city
     region = regions_sorted[int(pre_region)]
     cities = city_by_region[region]
     all_locations = []
