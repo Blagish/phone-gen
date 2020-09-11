@@ -848,3 +848,131 @@
 2020-09-11 12:10:58,337 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
 2020-09-11 12:10:58,400 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
 2020-09-11 12:10:58,432 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:17:12,564 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:17:12,565 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:17:13,162 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:17:15,001 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:17:15,599 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:17:15,665 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:17:15,699 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:17:37,226 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:37,535 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:37,987 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:38,370 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:38,662 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:39,010 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1111
+2020-09-11 20:17:47,952 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:17:48,214 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:17:48,733 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:24:54,166 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:24:54,166 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:24:54,668 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:24:56,224 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:24:56,804 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:24:56,869 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:24:56,902 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:25:18,501 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:25:20,619 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:25:23,017 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=12
+2020-09-11 20:25:29,888 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:26:10,043 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:27:09,833 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:27:09,833 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:27:10,382 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:27:12,259 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:27:12,866 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:27:12,932 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:27:12,968 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:27:18,755 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:27:28,188 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:27:34,158 - PhoneGen - INFO - Called API method /get_things with parameters region_id=1, provider_id=0, count=11
+2020-09-11 20:27:49,790 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:27:49,790 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:27:50,339 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:27:52,190 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:27:52,769 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:27:52,834 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:27:52,868 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:28:01,980 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:28:03,933 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:28:26,395 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:28:26,395 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:28:26,947 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:28:28,708 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:28:29,301 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:28:29,364 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:28:29,399 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:28:31,860 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:28:33,987 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=1000
+2020-09-11 20:43:33,351 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:43:33,351 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:43:33,732 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:43:34,908 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:43:35,304 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:43:35,355 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:43:35,378 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:43:46,438 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=10
+2020-09-11 20:44:02,985 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:44:02,986 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:44:03,517 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:44:05,341 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:44:05,974 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:44:06,038 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:44:06,081 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:44:08,819 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=10
+2020-09-11 20:52:51,651 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:52:51,651 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:52:52,212 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:52:54,222 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:52:54,900 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:52:55,001 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:52:55,044 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:52:58,000 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=10
+2020-09-11 20:53:28,086 - PhoneGen - INFO - Starting the app...
+2020-09-11 20:53:28,086 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 20:53:28,593 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 20:53:30,370 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 20:53:30,961 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 20:53:31,024 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 20:53:31,061 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 20:53:38,694 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=10
+2020-09-11 21:06:00,607 - PhoneGen - INFO - Starting the app...
+2020-09-11 21:06:00,607 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 21:06:01,066 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 21:06:02,543 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 21:06:03,038 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 21:06:03,091 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 21:06:03,118 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 21:06:11,115 - PhoneGen - INFO - Called API method /get_things with parameters region_id=2, provider_id=0, count=10
+2020-09-11 21:10:41,020 - PhoneGen - INFO - Starting the app...
+2020-09-11 21:10:41,021 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 21:10:41,683 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 21:10:43,798 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 21:10:44,414 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 21:10:44,479 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 21:10:44,513 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 21:11:00,023 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:00,687 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:00,874 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:01,183 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:01,242 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:01,569 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=11
+2020-09-11 21:11:35,711 - PhoneGen - INFO - Starting the app...
+2020-09-11 21:11:35,711 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 21:11:36,304 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 21:11:38,482 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 21:11:39,166 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 21:11:39,245 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 21:11:39,287 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 21:12:02,042 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=12
+2020-09-11 21:14:30,231 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=55, count=12
+2020-09-11 21:16:47,411 - PhoneGen - INFO - Starting the app...
+2020-09-11 21:16:47,411 - PhoneGen - INFO - Started updating .csv files.
+2020-09-11 21:16:48,083 - PhoneGen - INFO - File ABC-3xx.csv parsed successfully.
+2020-09-11 21:16:50,621 - PhoneGen - INFO - File ABC-4xx.csv parsed successfully.
+2020-09-11 21:16:51,312 - PhoneGen - INFO - File ABC-8xx.csv parsed successfully.
+2020-09-11 21:16:51,401 - PhoneGen - INFO - File DEF-9xx.csv parsed successfully.
+2020-09-11 21:16:51,447 - PhoneGen - INFO - Files updated successfully.
+2020-09-11 21:17:05,117 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=12
+2020-09-11 21:17:09,611 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=12
+2020-09-11 21:17:11,672 - PhoneGen - INFO - Called API method /get_things with parameters region_id=4, provider_id=0, count=12

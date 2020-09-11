@@ -49,7 +49,7 @@
             </fieldset>
             {% if form.region_chosen.data %}
                 <div class="form-group">
-                    {{ form.submit(class="btn btn-outline-info") }}
+                    {{ form.submit.widget.__call__(form.submit, class="btn btn-outline-info", id="submit_button", onclick   ='disable_button()')}}
                 </div>
             {% endif %}
         </form>
@@ -61,6 +61,14 @@
  function region_change() {
      window.location.replace(region_choose.value);
  }
+    </script>
+    <script>
+    function disable_button(){
+        submit_button.disabled = true;
+        setTimeout(function (){
+            submit_button.disabled = false;
+        }, 2000);
+    }
     </script>
 
 {% endblock scripts %}

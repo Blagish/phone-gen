@@ -1,7 +1,9 @@
 from app import app, providers, regions, city_by_region, data_by_region, logger, providers_by_region
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, send_file
 from app.forms import BaseForm
 from app.various import randomize, interval_bin_search
+import tempfile
+import os
 
 providers_sorted = ['Любой'] + list(sorted(providers))
 regions_sorted = list(sorted(regions))
@@ -76,10 +78,16 @@ def get_phones():
     phones = randomize(count, [(data_by_region[i][0],  # code
                                 int(data_by_region[i][1]),  # start
                                 int(data_by_region[i][2])) for i in data_sorted])  # end
+
     if phones:
-        return '<br/>'.join(list(phones))
+        tfile, path = tempfile.mkstemp()
+        with open(path, 'w') as f:
+            for phone in phones:
+                f.write(phone+'\n')
+        os.close(tfile)
+        return send_file(path, as_attachment=True, attachment_filename='base.csv')
     flash('У выбранного провайдера нет номеров в данном регионе.')
-    return redirect(url_for('home'))
+    return redirect(url_for(f'home/{pre_region}'))
 
 
 @app.route('/api')
