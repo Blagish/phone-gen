@@ -28,7 +28,7 @@ def next_step(region_id):
     form.provider.choices = providers_by_region[form.region.data]
     form.region_chosen.data = True
     if form.is_submitted():
-        return redirect(url_for('get_things',
+        return redirect(url_for('get_phones',
                                 region_id=form.region.data,
                                 provider_id=form.provider.data,
                                 count=form.count.data))
@@ -36,8 +36,8 @@ def next_step(region_id):
     return render_template('home.html', title='Заглавная страница', form=form)
 
 
-@app.route('/get_things')  # , methods=['GET, POST'])
-def get_things():
+@app.route('/get_phones')  # , methods=['GET, POST'])
+def get_phones():
     pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get(
         'provider_id'), request.args.get('count')
 
