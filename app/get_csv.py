@@ -50,6 +50,7 @@ def write_to_db(name):
                 providers_by_region[region].update([data_provider])
             else:
                 providers_by_region[region] = {'Любой'}
+                providers_by_region[region].update([data_provider])
 
             data_by_region.append((i['АВС/ DEF'],
                                    i['От'],
