@@ -49,7 +49,7 @@ def write_to_db(name):
             if providers_by_region.get(region, -1) != -1:
                 providers_by_region[region].update([data_provider])
             else:
-                providers_by_region[region] = set(['Любой'])
+                providers_by_region[region] = {'Любой'}
 
             data_by_region.append((i['АВС/ DEF'],
                                    i['От'],
@@ -64,6 +64,18 @@ def write_to_db(name):
     logger.info(f'File {name} parsed successfully.')
 
 
+def mega_sort_providers(): # rewrite this later
+    providers_sorted = ['Любой'] + list(sorted(providers))
+    regions_sorted = list(sorted(regions))
+    for region_id in range(len(regions_sorted)):
+        choices = []
+        possible_providers = providers_by_region[regions_sorted[region_id]]
+        for i in range(len(providers_sorted)):  # rewrite this in the future maybe? dk
+            if providers_sorted[i] in possible_providers:
+                choices.append((i, providers_sorted[i]))
+        providers_by_region[region_id] = choices
+
+
 def load_database(update=True):
     logger.info('Started updating .csv files.')
     os.chdir('./app/data')
@@ -72,4 +84,5 @@ def load_database(update=True):
             if update:
                 get_file(name, session)
             write_to_db(name)
+    mega_sort_providers()
     logger.info('Files updated successfully.')

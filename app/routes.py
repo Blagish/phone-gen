@@ -12,32 +12,36 @@ regions_sorted = list(sorted(regions))
 def home():
     form = BaseForm()
     form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
-    form.provider.choices = [(0, '-Сначала выберите регион-')]
+    form.provider.choices = [(0, '- Сначала выберите регион -')]
+    form.region_chosen.data = False
+    return render_template('home.html', title='Заглавная страница', form=form, pros=providers_by_region)
+
+
+@app.route('/<int:region_id>', methods=['GET', 'POST'])
+@app.route('/home/<int:region_id>', methods=['GET', 'POST'])
+def next_step(region_id):
+    form = BaseForm()
+    form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
+    form.provider.choices = [(k, providers_sorted[k]) for k in range(len(providers_sorted))]
+
+    form.region.process_data(region_id)
+    form.provider.choices = providers_by_region[form.region.data]
+    form.region_chosen.data = True
     if form.is_submitted():
-        if form.set_region.data:    # If we setted the region, need to create providers list
-            choices = []
-            possible_providers = providers_by_region[regions_sorted[form.region.data]]
-            for i in range(len(providers_sorted)): # rewrite this in the future maybe? dk
-                if providers_sorted[i] in possible_providers:
-                    choices.append((i, providers_sorted[i]))
+        return redirect(url_for('get_things',
+                                region_id=form.region.data,
+                                provider_id=form.provider.data,
+                                count=form.count.data))
 
-            form.provider.choices = choices
-            form.region_chosen.data = True
-            return render_template('home.html', title='Заглавная страница', form=form)
-
-        else:
-            return redirect(url_for('get_things',
-                                    region_id=form.region.data,
-                                    provider_id=form.provider.data,
-                                    count=form.count.data))
     return render_template('home.html', title='Заглавная страница', form=form)
 
 
 @app.route('/get_things')  # , methods=['GET, POST'])
 def get_things():
-    pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get('provider_id'), request.args.get('count')
+    pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get(
+        'provider_id'), request.args.get('count')
 
-    if not (pre_region and pre_provider and pre_count): # Check for NoneType
+    if not (pre_region and pre_provider and pre_count):  # Check for NoneType
         flash('Недопустимые значения параметров.')
         return redirect(url_for('home'))
 
@@ -65,8 +69,9 @@ def get_things():
     logger.info(f'Called API method /get_things with parameters ' + \
                 f'region_id={pre_region}, ' + \
                 f'provider_id={pre_provider}, count={count}')
-    data_sorted = list(filter(lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
-                              range(len(data_by_region))))
+    data_sorted = list(filter(
+        lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
+        range(len(data_by_region))))
 
     phones = randomize(count, [(data_by_region[i][0],  # code
                                 int(data_by_region[i][1]),  # start
@@ -112,14 +117,3 @@ def get_info():
                f'"region": "{location.pop(-1)}",' \
                f'"location": "{"|".join(location)}"' + '}'
     return '{"code": "ne"}'  # not exist
-
-
-# Old version, with simple search
-#    for i in regions_by_code:
-#        if data_by_region[i][1] < phone < data_by_region[i][2]:
-#           location = data_by_region[i][5].split('|')
-#           logger.info(f'Calculated')
-#           return '{"code": "ok",' \
-#                  f'"provider": "{data_by_region[i][4]}",' \
-#                  f'"region": "{location.pop(-1)}",' \
-#                 f'"location": "{"|".join(location)}"' + '}'

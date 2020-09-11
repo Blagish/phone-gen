@@ -8,6 +8,8 @@ regions = set()
 city_by_region = dict()
 data_by_region = list()
 providers_by_region = dict()
+
+
 logger = logging.getLogger('PhoneGen')
 logger.setLevel(logging.INFO)
 fh = logging.FileHandler("phonegen.log")

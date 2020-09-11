@@ -9,18 +9,15 @@
                 <div class="form-group">
                     {{ form.region.label(class="form-control-label") }}
                     {% if form.region.errors %}
-                        {{ form.region(class="form-control form-control-lg is-invalid") }}
+                        {{ form.region.widget.__call__(form.region, class="form-control form-control-lg", id="region_choose", onchange='region_change()')}}
                         <div class="invalid-feedback">
                             {% for error in form.region.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.region(class="form-control form-control-lg") }}
+                        {{ form.region.widget.__call__(form.region, class="form-control form-control-lg", id="region_choose", onchange='region_change()')}}
                     {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.set_region(class="btn btn-outline-info") }}
                 </div>
                 <!--legend class="border-bottom mb-4">Получение базы данных номеров</legend-->
                 <div class="form-group">
@@ -58,3 +55,12 @@
         </form>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+ function region_change() {
+     window.location.replace(region_choose.value);
+ }
+    </script>
+
+{% endblock scripts %}
