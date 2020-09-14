@@ -13,35 +13,68 @@ regions_sorted = list(sorted(regions))
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     form = BaseForm()
-    form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
-    form.provider.choices = [(0, '- Сначала выберите регион -')]
+    form.region_id.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
+    # form.provider_id.choices = [(0, '- Сначала выберите регион -')]
     form.region_chosen.data = False
-    return render_template('home.html', title='Заглавная страница', form=form, pros=providers_by_region)
+    return render_template('home.html', title='Заглавная страница', form=form)
 
 
-@app.route('/<int:region_id>', methods=['GET', 'POST'])
-@app.route('/home/<int:region_id>', methods=['GET', 'POST'])
+@app.route('/region<int:region_id>', methods=['GET', 'POST'])
+@app.route('/home/region<int:region_id>', methods=['GET', 'POST'])
 def next_step(region_id):
     form = BaseForm()
-    form.region.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
-    form.provider.choices = [(k, providers_sorted[k]) for k in range(len(providers_sorted))]
+    form.region_id.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
+    form.provider_id.choices = [(k, providers_sorted[k]) for k in range(len(providers_sorted))]
 
-    form.region.process_data(region_id)
-    form.provider.choices = providers_by_region[form.region.data]
+    form.region_id.process_data(region_id)
+    form.provider_id.choices = providers_by_region[form.region_id.data]
     form.region_chosen.data = True
-    if form.is_submitted():
-        return redirect(url_for('get_phones',
-                                region_id=form.region.data,
-                                provider_id=form.provider.data,
-                                count=form.count.data))
+#    if form.is_submitted():
+#        return redirect(url_for('get_phones',
+#                                region_id=form.region.data,
+#                                provider_id=form.provider.data,
+#                                count=form.count.data))
 
     return render_template('home.html', title='Заглавная страница', form=form)
 
 
-@app.route('/get_phones')  # , methods=['GET, POST'])
-def get_phones():
-    pre_region, pre_provider, pre_count = request.args.get('region_id'), request.args.get(
-        'provider_id'), request.args.get('count')
+def get_phones(region_id, provider_id, count):
+    # Create all locations to chosen city
+    region = regions_sorted[region_id]
+    cities = city_by_region[region]
+    all_locations = []
+    for i in cities:
+        sep = f'{i}|'
+        if i == '':
+            sep = ''
+        all_locations.append(f'{sep}{region}')
+
+    provider = providers_sorted[provider_id]
+
+    logger.info(f'Called API method /get_things with parameters ' + \
+                f'region={region_id}, ' + \
+                f'provider={provider_id}, count={count}')
+    data_sorted = list(filter(
+        lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
+        range(len(data_by_region))))
+
+    phones = randomize(count, [(data_by_region[i][0],  # code
+                                int(data_by_region[i][1]),  # start
+                                int(data_by_region[i][2])) for i in data_sorted])  # end
+    return phones
+
+
+@app.route('/get_phones', methods=['GET', 'POST'])
+def get_phones_data():
+    if request.method == 'GET':
+        data = request.args
+    elif request.method == 'POST':
+        data = dict(request.data)
+        if not data:
+            data = dict(request.form)
+
+    pre_region, pre_provider, pre_count = data.get('region_id'), data.get(
+        'provider_id'), data.get('count')
 
     if not (pre_region and pre_provider and pre_count):  # Check for NoneType
         flash('Недопустимые значения параметров.')
@@ -55,29 +88,7 @@ def get_phones():
         flash('Число номеров не должно превышать 1000000 (одного миллиона).')
         return redirect(url_for('home'))
 
-    # Create all locations to chosen city
-    region = regions_sorted[int(pre_region)]
-    cities = city_by_region[region]
-    all_locations = []
-    for i in cities:
-        sep = f'{i}|'
-        if i == '':
-            sep = ''
-        all_locations.append(f'{sep}{region}')
-
-    provider_id = int(pre_provider)
-    provider = providers_sorted[provider_id]
-
-    logger.info(f'Called API method /get_things with parameters ' + \
-                f'region_id={pre_region}, ' + \
-                f'provider_id={pre_provider}, count={count}')
-    data_sorted = list(filter(
-        lambda x: ((data_by_region[x][4] == provider) or not provider_id) and data_by_region[x][5] in all_locations,
-        range(len(data_by_region))))
-
-    phones = randomize(count, [(data_by_region[i][0],  # code
-                                int(data_by_region[i][1]),  # start
-                                int(data_by_region[i][2])) for i in data_sorted])  # end
+    phones = get_phones(int(pre_region), int(pre_provider), count)
 
     if phones:
         tfile, path = tempfile.mkstemp()
@@ -121,7 +132,7 @@ def get_info():
         location = data_by_region[regions_by_code[res]][5].split('|')
         logger.info(f'Calculated')
         return '{"code": "ok",' \
-               f'"provider": "{data_by_region[res][4]}",' \
+               f'"provider": "{data_by_region[regions_by_code[res]][4]}",' \
                f'"region": "{location.pop(-1)}",' \
                f'"location": "{"|".join(location)}"' + '}'
     return '{"code": "ne"}'  # not exist
