@@ -118,7 +118,7 @@ def get_info():
     regions_by_code = list(filter(lambda x: data_by_region[x][0] == code, range(len(data_by_region))))
     res = interval_bin_search(phone, data_by_region, regions_by_code)
     if res != -1:
-        location = data_by_region[res][5].split('|')
+        location = data_by_region[regions_by_code[res]][5].split('|')
         logger.info(f'Calculated')
         return '{"code": "ok",' \
                f'"provider": "{data_by_region[res][4]}",' \
