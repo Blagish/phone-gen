@@ -14,7 +14,7 @@ regions_sorted = list(sorted(regions))
 def home():
     form = BaseForm()
     form.region_id.choices = [(k, regions_sorted[k]) for k in range(len(regions_sorted))]
-    # form.provider_id.choices = [(0, '- Сначала выберите регион -')]
+    form.provider_id.choices = [(0, '')]
     form.region_chosen.data = False
     return render_template('home.html', title='Заглавная страница', form=form)
 
